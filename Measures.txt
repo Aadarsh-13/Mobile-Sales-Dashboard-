@@ -1,0 +1,18 @@
+Custom Calendar : = Table.TransformColumnTypes(#"Renamed Columns",{{"Date", type date}})
+
+
+Average Price = AVERAGE(Sales_Data[Price Per Unit]) 
+
+MTD = TOTALMTD([Total Sales],'Custom Calandar'[Date].[Date])
+
+Same Period Last Year = CALCULATE([Total Sales],
+SAMEPERIODLASTYEAR('Custom Calandar'[Date].[Date])
+)
+
+Total Quantity = SUM(Sales_Data[Units Sold])
+
+Total Sales = SUMX(Sales_Data,Sales_Data[Units Sold]*Sales_Data[Price Per Unit])
+
+Total Transactions = COUNTROWS(Sales_Data)
+
+
